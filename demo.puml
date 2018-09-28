@@ -1,0 +1,20 @@
+@startuml
+
+title 高额广告主后台
+
+start
+:接口/login;
+:接受参数username/password;
+if (根据member表查询相关账号) then (true)
+  :验证通过;
+  :获取账户类型;
+  :从advertiser_has_member表中取member_id对应的advertiser_id;
+  :根据advertiser_id再从advertiser对用的id数据;
+  :将该账户对应的advertiser_type设置到cookie中，key为atype，过期时间30天;
+  :设置会话cookie，key为lu，过期时间30天;
+  else
+    :账号密码错误;
+
+endif
+
+@enduml
